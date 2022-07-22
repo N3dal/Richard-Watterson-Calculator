@@ -63,6 +63,8 @@ def clear():
         # system("your-command")
         pass
 
+    return None
+
 
 clear()
 
@@ -70,6 +72,8 @@ clear()
 def start_app(root: tkinter.Tk, **options):
     """"""
     root.mainloop()
+
+    return None
 
 
 def get_image(path: str):
@@ -133,6 +137,25 @@ def load_images():
     )
 
     return {get_image(path)[0]: get_image(path)[-1] for path in pictures_paths}
+
+
+def clear_screen(screen_var: tkinter.StringVar, state: int = 1):
+    """clear the calculator screen either one digit or the whole screen,
+    depending on the state param where:
+    1 => clear one digit the last digit.
+    0 => clear the whole screen all digits.
+    and the function by default clear the last digit.
+    """
+
+    if state:
+        # clear the last digit, by taking the string without the last element.
+        temp_string = screen_var.get()[:-1]
+        screen_var.set(temp_string)
+
+    else:
+        screen_var.set('')
+
+    return None
 
 
 def main_window():
@@ -291,6 +314,8 @@ def main_window():
     equal_btn.place(x=350, y=371)
 
     start_app(root)
+
+    return None
 
 
 def main():
