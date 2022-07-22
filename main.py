@@ -156,6 +156,33 @@ def main_window():
         root, name="main_window_frame_label", image=images["frame"], **LABEL_PROPERTIES)
     main_window_frame.place(x=0, y=0)
 
+    # now create the title-bar.
+
+    # first the title.
+    title_bar_title = tkinter.Label(
+        root, name="title_bar_title_label", image=images["title"], **LABEL_PROPERTIES)
+    title_bar_title.place(x=12, y=12)
+
+    # second the title-bar buttons.
+    minimize_btn = tkinter.Button(
+        root, name="title_bar_minimize_btn", image=images["minimize"], **BTN_PROPERTIES)
+    minimize_btn.place(x=315, y=12)
+
+    maximize_btn = tkinter.Button(
+        root, name="title_bar_maximize_btn", image=images["maximize"], **BTN_PROPERTIES)
+    maximize_btn.place(x=355, y=12)
+
+    close_btn = tkinter.Button(
+        root, name="title_bar_close_btn", image=images["close"], **BTN_PROPERTIES)
+    close_btn.place(x=395, y=12)
+
+    # now create the screen.
+    calculator_screen = tkinter.Label(
+        root, name="calculator_screen_label", image=images["screen"], **LABEL_PROPERTIES)
+    calculator_screen.place(x=12, y=50)
+
+    # now create the buttons.
+
     start_app(root)
 
 
