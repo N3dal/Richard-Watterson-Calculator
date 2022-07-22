@@ -52,11 +52,16 @@ def start_app(root: tkinter.Tk, **options):
     root.mainloop()
 
 
-def load_images():
-    """load all the images needed for the program to work,
-    and return them as dictionary."""
+def get_image(path: str):
+    """get an image using the path and return it as,
+    tkinter.PhotoImage object."""
 
+    # get the picture name.
+    picture_name = path.split('/')[-1]
 
+    img = tkinter.PhotoImage(file=path, name=name)
+
+    return img
 
 
 def main_window():
