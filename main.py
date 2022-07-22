@@ -151,6 +151,8 @@ def main_window():
     # load all the pictures.
     images = load_images()
 
+    # print(images.keys()) # DEBUG.
+
     # now create the frame.
     main_window_frame = tkinter.Label(
         root, name="main_window_frame_label", image=images["frame"], **LABEL_PROPERTIES)
@@ -182,6 +184,110 @@ def main_window():
     calculator_screen.place(x=12, y=50)
 
     # now create the buttons.
+
+    addition_btn = tkinter.Button(root, name="addition_btn",
+                                  command=None, image=images["addition"], **BTN_PROPERTIES)
+
+    backspace_btn = tkinter.Button(root, name="backspace_btn",
+                                   command=None, image=images["backspace"], **BTN_PROPERTIES)
+
+    clear_all_btn = tkinter.Button(root, name="clear_all_btn",
+                                   command=None, image=images["clear_all"], **BTN_PROPERTIES)
+
+    clear_digit_btn = tkinter.Button(root, name="clear_digit_btn",
+                                     command=None, image=images["clear_digit"], **BTN_PROPERTIES)
+
+    close_parentheses_btn = tkinter.Button(root, name="close_parentheses_btn",
+                                           command=None, image=images["close_parentheses"], **BTN_PROPERTIES)
+
+    divide_btn = tkinter.Button(root, name="divide_btn",
+                                command=None, image=images["divide"], **BTN_PROPERTIES)
+
+    dot_btn = tkinter.Button(root, name="dot_btn",
+                             command=None, image=images["dot"], **BTN_PROPERTIES)
+
+    equal_btn = tkinter.Button(root, name="equal_btn",
+                               command=None, image=images["equal_btn"], **BTN_PROPERTIES)
+
+    multiply_btn = tkinter.Button(root, name="multiply_btn",
+                                  command=None, image=images["multiply"], **BTN_PROPERTIES)
+
+    open_parentheses_btn = tkinter.Button(root, name="open_parentheses_btn",
+                                          command=None, image=images["open_parentheses"], **BTN_PROPERTIES)
+
+    percentage_btn = tkinter.Button(root, name="percentage_btn",
+                                    command=None, image=images["percentage"], **BTN_PROPERTIES)
+
+    positive_negative_btn = tkinter.Button(root, name="positive_negative_btn",
+                                           command=None, image=images["positive_negative"], **BTN_PROPERTIES)
+
+    subtraction_btn = tkinter.Button(root, name="subtraction_btn",
+                                     command=None, image=images["subtraction"], **BTN_PROPERTIES)
+
+    num0_btn = tkinter.Button(root, name="num0_btn",
+                              command=None, image=images["num0"], **BTN_PROPERTIES)
+
+    num1_btn = tkinter.Button(root, name="num1_btn",
+                              command=None, image=images["num1"], **BTN_PROPERTIES)
+
+    num2_btn = tkinter.Button(root, name="num2_btn",
+                              command=None, image=images["num2"], **BTN_PROPERTIES)
+
+    num3_btn = tkinter.Button(root, name="num3_btn",
+                              command=None, image=images["num3"], **BTN_PROPERTIES)
+
+    num4_btn = tkinter.Button(root, name="num4_btn",
+                              command=None, image=images["num4"], **BTN_PROPERTIES)
+
+    num5_btn = tkinter.Button(root, name="num5_btn",
+                              command=None, image=images["num5"], **BTN_PROPERTIES)
+
+    num6_btn = tkinter.Button(root, name="num6_btn",
+                              command=None, image=images["num6"], **BTN_PROPERTIES)
+
+    num7_btn = tkinter.Button(root, name="num7_btn",
+                              command=None, image=images["num7"], **BTN_PROPERTIES)
+
+    num8_btn = tkinter.Button(root, name="num8_btn",
+                              command=None, image=images["num8"], **BTN_PROPERTIES)
+
+    num9_btn = tkinter.Button(root, name="num9_btn",
+                              command=None, image=images["num9"], **BTN_PROPERTIES)
+
+    # place the buttons:
+
+    # first column:
+    backspace_btn.place(x=13, y=125)
+    num7_btn.place(x=9, y=207)
+    num4_btn.place(x=11, y=289)
+    num1_btn.place(x=11, y=366)
+    num0_btn.place(x=14, y=445)
+
+    # second column:
+    clear_all_btn.place(x=94, y=125)
+    num8_btn.place(x=92, y=207)
+    num5_btn.place(x=92, y=285)
+    num2_btn.place(x=92, y=363)
+
+    # third column:
+    clear_digit_btn.place(x=179, y=124)
+    num9_btn.place(x=178, y=207)
+    num6_btn.place(x=178, y=287)
+    num3_btn.place(x=178, y=366)
+    dot_btn.place(x=176, y=448)
+
+    # forth column:
+    positive_negative_btn.place(x=264, y=125)
+    divide_btn.place(x=264, y=209)
+    multiply_btn.place(x=264, y=287)
+    subtraction_btn.place(x=263, y=366)
+    addition_btn.place(x=264, y=448)
+
+    # fifth column:
+    percentage_btn.place(x=348, y=124)
+    open_parentheses_btn.place(x=350, y=207)
+    close_parentheses_btn.place(x=350, y=285)
+    equal_btn.place(x=350, y=371)
 
     start_app(root)
 
