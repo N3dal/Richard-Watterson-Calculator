@@ -37,6 +37,11 @@ def clear():
         pass
 
 
+def start_app(root: tkinter.Tk, **options):
+    """"""
+    root.mainloop()
+
+
 def main_window():
     pass
 
