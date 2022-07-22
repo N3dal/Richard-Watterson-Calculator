@@ -29,6 +29,23 @@ X_START_POSITION = 1500
 Y_START_POSITION = 250
 WIN_BG = "#e7eaef"
 
+BTN_PROPERTIES = {
+
+    "border": 0,
+    "highlightthickness": 0,
+    "bg": WIN_BG,
+    "activebackground": WIN_BG,
+
+}
+
+LABEL_PROPERTIES = {
+
+    "border": 0,
+    "highlightthickness": 0,
+    "bg": WIN_BG
+
+}
+
 
 def clear():
     """wipe terminal screen."""
