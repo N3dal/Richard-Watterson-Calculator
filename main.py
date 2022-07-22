@@ -47,6 +47,16 @@ LABEL_PROPERTIES = {
 
 }
 
+SCREEN_VALUE_LABEL_PROPERTIES = {
+
+    "bg": "#cdd0ba",
+    "fg": "#626457",
+    "font": ("Calbri", 29, "bold"),
+    "width": 14,
+    "anchor": "e"
+
+}
+
 
 def clear():
     """wipe terminal screen."""
@@ -167,6 +177,8 @@ def print_btn_to_screen(btn_text: str, screen_var: tkinter.StringVar):
 
     screen_var.set(current_screen_value)
 
+    return None
+
 
 def main_window():
 
@@ -212,10 +224,23 @@ def main_window():
         root, name="title_bar_close_btn", image=images["close"], command=exit, **BTN_PROPERTIES)
     close_btn.place(x=395, y=12)
 
+    # create the calculator_screen_variable.
+    calculator_screen_var = tkinter.StringVar(root)
+
+    # init the calculator_screen_var
+    calculator_screen_var.set('34')
+
     # now create the screen.
     calculator_screen = tkinter.Label(
         root, name="calculator_screen_label", image=images["screen"], **LABEL_PROPERTIES)
     calculator_screen.place(x=12, y=50)
+
+    # now create the screen_value label.
+
+    calculator_screen_value = tkinter.Label(
+        root, name="calculator_screen_value_label", textvariable=calculator_screen_var,
+        **SCREEN_VALUE_LABEL_PROPERTIES)
+    calculator_screen_value.place(x=30, y=65)
 
     # now create the buttons.
 
@@ -259,34 +284,34 @@ def main_window():
                                      command=None, image=images["subtraction"], **BTN_PROPERTIES)
 
     num0_btn = tkinter.Button(root, name="num0_btn",
-                              command=None, image=images["num0"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("0", calculator_screen_var), image=images["num0"], **BTN_PROPERTIES)
 
     num1_btn = tkinter.Button(root, name="num1_btn",
-                              command=None, image=images["num1"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("1", calculator_screen_var), image=images["num1"], **BTN_PROPERTIES)
 
     num2_btn = tkinter.Button(root, name="num2_btn",
-                              command=None, image=images["num2"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("2", calculator_screen_var), image=images["num2"], **BTN_PROPERTIES)
 
     num3_btn = tkinter.Button(root, name="num3_btn",
-                              command=None, image=images["num3"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("3", calculator_screen_var), image=images["num3"], **BTN_PROPERTIES)
 
     num4_btn = tkinter.Button(root, name="num4_btn",
-                              command=None, image=images["num4"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("4", calculator_screen_var), image=images["num4"], **BTN_PROPERTIES)
 
     num5_btn = tkinter.Button(root, name="num5_btn",
-                              command=None, image=images["num5"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("5", calculator_screen_var), image=images["num5"], **BTN_PROPERTIES)
 
     num6_btn = tkinter.Button(root, name="num6_btn",
-                              command=None, image=images["num6"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("6", calculator_screen_var), image=images["num6"], **BTN_PROPERTIES)
 
     num7_btn = tkinter.Button(root, name="num7_btn",
-                              command=None, image=images["num7"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("7", calculator_screen_var), image=images["num7"], **BTN_PROPERTIES)
 
     num8_btn = tkinter.Button(root, name="num8_btn",
-                              command=None, image=images["num8"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("8", calculator_screen_var), image=images["num8"], **BTN_PROPERTIES)
 
     num9_btn = tkinter.Button(root, name="num9_btn",
-                              command=None, image=images["num9"], **BTN_PROPERTIES)
+                              command=lambda: print_btn_to_screen("9", calculator_screen_var), image=images["num9"], **BTN_PROPERTIES)
 
     # place the buttons:
 
