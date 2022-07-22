@@ -228,7 +228,7 @@ def main_window():
     calculator_screen_var = tkinter.StringVar(root)
 
     # init the calculator_screen_var
-    calculator_screen_var.set('34')
+    calculator_screen_var.set('ff')
 
     # now create the screen.
     calculator_screen = tkinter.Label(
@@ -236,11 +236,10 @@ def main_window():
     calculator_screen.place(x=12, y=50)
 
     # now create the screen_value label.
-
-    calculator_screen_value = tkinter.Label(
+    calculator_screen_value_label = tkinter.Label(
         root, name="calculator_screen_value_label", textvariable=calculator_screen_var,
         **SCREEN_VALUE_LABEL_PROPERTIES)
-    calculator_screen_value.place(x=30, y=65)
+    calculator_screen_value_label.place(x=30, y=65)
 
     # now create the buttons.
 
@@ -251,10 +250,10 @@ def main_window():
                                    command=None, image=images["backspace"], **BTN_PROPERTIES)
 
     clear_all_btn = tkinter.Button(root, name="clear_all_btn",
-                                   command=None, image=images["clear_all"], **BTN_PROPERTIES)
+                                   command=lambda: clear_screen(calculator_screen_var, state=0), image=images["clear_all"], **BTN_PROPERTIES)
 
     clear_digit_btn = tkinter.Button(root, name="clear_digit_btn",
-                                     command=None, image=images["clear_digit"], **BTN_PROPERTIES)
+                                     command=lambda: clear_screen(calculator_screen_var, state=1), image=images["clear_digit"], **BTN_PROPERTIES)
 
     close_parentheses_btn = tkinter.Button(root, name="close_parentheses_btn",
                                            command=None, image=images["close_parentheses"], **BTN_PROPERTIES)
