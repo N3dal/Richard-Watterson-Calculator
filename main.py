@@ -54,14 +54,17 @@ def start_app(root: tkinter.Tk, **options):
 
 def get_image(path: str):
     """get an image using the path and return it as,
-    tkinter.PhotoImage object."""
+    tuple contain picture-name and the tkinter.PhotoImage object"""
 
     # get the picture name.
     picture_name = path.split('/')[-1]
 
-    img = tkinter.PhotoImage(file=path, name=name)
+    # now remove the file extension.
+    picture_name = picture_name.split(".")[0]
 
-    return img
+    img = tkinter.PhotoImage(file=path, name=picture_name)
+
+    return picture_name, img
 
 
 def load_images():
@@ -108,6 +111,8 @@ def load_images():
 
     )
 
+    return {get_image(path)[0]: get_image(path)[-1] for path in pictures_paths}
+
 
 def main_window():
 
@@ -122,6 +127,10 @@ def main_window():
 
     # remove the title-bar.
     root.overrideredirect(1)
+
+    d = load_images()
+
+    print(d)
 
     start_app(root)
 
