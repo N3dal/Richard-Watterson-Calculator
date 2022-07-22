@@ -19,6 +19,7 @@
 from os import name as OS_NAME
 from os import system
 import tkinter
+from sys import exit
 
 # TODO: create json file to store all the images paths into it.
 
@@ -175,7 +176,7 @@ def main_window():
     maximize_btn.place(x=355, y=12)
 
     close_btn = tkinter.Button(
-        root, name="title_bar_close_btn", image=images["close"], **BTN_PROPERTIES)
+        root, name="title_bar_close_btn", image=images["close"], command=exit, **BTN_PROPERTIES)
     close_btn.place(x=395, y=12)
 
     # now create the screen.
