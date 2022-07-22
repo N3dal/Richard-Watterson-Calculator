@@ -44,13 +44,36 @@ def clear():
         pass
 
 
+clear()
+
+
 def start_app(root: tkinter.Tk, **options):
     """"""
     root.mainloop()
 
 
+def load_images():
+    """load all the images needed for the program to work,
+    and return them as dictionary."""
+
+
+
+
 def main_window():
-    pass
+
+    root = tkinter.Tk()
+
+    # setup the window size and start position.
+    root.geometry(
+        f"{WIN_WIDTH}x{WIN_HEIGHT}+{X_START_POSITION}+{Y_START_POSITION}")
+
+    # set the window background color.
+    root.configure(bg=WIN_BG)
+
+    # remove the title-bar.
+    root.overrideredirect(1)
+
+    start_app(root)
 
 
 def main():
