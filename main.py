@@ -20,6 +20,13 @@ from os import name as OS_NAME
 from os import system
 import tkinter
 
+# set the Defaults.
+WIN_WIDTH = 442
+WIN_HEIGHT = 540
+X_START_POSITION = 1500
+Y_START_POSITION = 250
+WIN_BG = "#e7eaef"
+
 
 def clear():
     """wipe terminal screen."""
