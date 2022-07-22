@@ -64,6 +64,51 @@ def get_image(path: str):
     return img
 
 
+def load_images():
+    """return all the needed images."""
+
+    pictures_paths = (
+
+        # frame.
+        "./pictures/frame.png",
+
+        # buttons.
+        "./pictures/buttons/addition.png",
+        "./pictures/buttons/backspace.png",
+        "./pictures/buttons/clear_all.png",
+        "./pictures/buttons/clear_digit.png",
+        "./pictures/buttons/close_parentheses.png",
+        "./pictures/buttons/divide.png",
+        "./pictures/buttons/dot.png",
+        "./pictures/buttons/equal_btn.png",
+        "./pictures/buttons/multiply.png",
+        "./pictures/buttons/num0.png",
+        "./pictures/buttons/num1.png",
+        "./pictures/buttons/num2.png",
+        "./pictures/buttons/num3.png",
+        "./pictures/buttons/num4.png",
+        "./pictures/buttons/num5.png",
+        "./pictures/buttons/num6.png",
+        "./pictures/buttons/num7.png",
+        "./pictures/buttons/num8.png",
+        "./pictures/buttons/num9.png",
+        "./pictures/buttons/open_parentheses.png",
+        "./pictures/buttons/percentage.png",
+        "./pictures/buttons/positive_negative.png",
+        "./pictures/buttons/subtraction.png",
+
+        # title-bar.
+        "./pictures/title_bar/close.png",
+        "./pictures/title_bar/maximize.png",
+        "./pictures/title_bar/minimize.png",
+        "./pictures/title_bar/title.png",
+
+        # screen.
+        "./pictures/screen/screen.png"
+
+    )
+
+
 def main_window():
 
     root = tkinter.Tk()
