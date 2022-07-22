@@ -20,6 +20,8 @@ from os import name as OS_NAME
 from os import system
 import tkinter
 
+# TODO: create json file to store all the images paths into it.
+
 # set the Defaults.
 WIN_WIDTH = 442
 WIN_HEIGHT = 540
@@ -68,7 +70,8 @@ def get_image(path: str):
 
 
 def load_images():
-    """return all the needed images."""
+    """return all the needed images,
+    as dictionary."""
 
     pictures_paths = (
 
@@ -128,9 +131,8 @@ def main_window():
     # remove the title-bar.
     root.overrideredirect(1)
 
-    d = load_images()
-
-    print(d)
+    # load all the pictures.
+    images = load_images()
 
     start_app(root)
 
