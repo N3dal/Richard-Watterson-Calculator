@@ -158,6 +158,16 @@ def clear_screen(screen_var: tkinter.StringVar, state: int = 1):
     return None
 
 
+def print_btn_to_screen(btn_text: str, screen_var: tkinter.StringVar):
+    """print the value of the button to the calculator screen."""
+
+    current_screen_value = screen_var.get()
+
+    current_screen_value += btn_text
+
+    screen_var.set(current_screen_value)
+
+
 def main_window():
 
     root = tkinter.Tk()
