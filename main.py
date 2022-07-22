@@ -151,6 +151,11 @@ def main_window():
     # load all the pictures.
     images = load_images()
 
+    # now create the frame.
+    main_window_frame = tkinter.Label(
+        root, name="main_window_frame_label", image=images["frame"], **LABEL_PROPERTIES)
+    main_window_frame.place(x=0, y=0)
+
     start_app(root)
 
 
