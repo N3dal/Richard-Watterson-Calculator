@@ -57,6 +57,9 @@ SCREEN_VALUE_LABEL_PROPERTIES = {
 
 }
 
+# i will use the list as stack here.
+calculation_stack = list()
+
 
 def clear():
     """wipe terminal screen."""
@@ -180,6 +183,18 @@ def print_to_screen(text: str, screen_var: tkinter.StringVar):
     return None
 
 
+def add_event(screen_var: tkinter.StringVar):
+    """add button callback"""
+
+    value = int(screen_var.get())
+
+    calculation_stack.append(value)
+
+    clear_screen(screen_var, 0)
+
+    print(calculation_stack)
+
+
 def main_window():
 
     root = tkinter.Tk()
@@ -244,7 +259,7 @@ def main_window():
     # now create the buttons.
 
     addition_btn = tkinter.Button(root, name="addition_btn",
-                                  command=None, image=images["addition"], **BTN_PROPERTIES)
+                                  command=lambda: add_event(calculator_screen_var), image=images["addition"], **BTN_PROPERTIES)
 
     backspace_btn = tkinter.Button(root, name="backspace_btn",
                                    command=None, image=images["backspace"], **BTN_PROPERTIES)
