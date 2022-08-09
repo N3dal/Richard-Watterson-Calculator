@@ -194,6 +194,18 @@ def add_event(screen_var: tkinter.StringVar):
 
     print(calculation_stack)
 
+    return None
+
+
+def equal_event(screen_var: tkinter.StringVar):
+    """equal button event"""
+
+    result = sum(calculation_stack)
+
+    screen_var.set(f"{result}")
+
+    return None
+
 
 def main_window():
 
@@ -280,7 +292,7 @@ def main_window():
                              command=None, image=images["dot"], **BTN_PROPERTIES)
 
     equal_btn = tkinter.Button(root, name="equal_btn",
-                               command=None, image=images["equal_btn"], **BTN_PROPERTIES)
+                               command=lambda: equal_event(calculator_screen_var), image=images["equal_btn"], **BTN_PROPERTIES)
 
     multiply_btn = tkinter.Button(root, name="multiply_btn",
                                   command=None, image=images["multiply"], **BTN_PROPERTIES)
