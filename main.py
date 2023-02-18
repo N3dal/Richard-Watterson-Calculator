@@ -168,6 +168,8 @@ def clear_screen(screen_var: tkinter.StringVar, state: int = 1):
     else:
         screen_var.set('')
 
+
+
     return None
 
 
@@ -186,9 +188,65 @@ def print_to_screen(text: str, screen_var: tkinter.StringVar):
 def add_event(screen_var: tkinter.StringVar):
     """add button callback"""
 
-    value = int(screen_var.get())
+    value = screen_var.get()
 
-    calculation_stack.append(value)
+    calculation_stack.append(value + "+")
+
+    clear_screen(screen_var, 0)
+
+    print(calculation_stack)
+
+    return None
+
+
+def sub_event(screen_var: tkinter.StringVar):
+    """add button callback"""
+
+    value = screen_var.get()
+
+    calculation_stack.append(value + "-")
+
+    clear_screen(screen_var, 0)
+
+    print(calculation_stack)
+
+    return None
+
+
+def mul_event(screen_var: tkinter.StringVar):
+    """add button callback"""
+
+    value = screen_var.get()
+
+    calculation_stack.append(value + "*")
+
+    clear_screen(screen_var, 0)
+
+    print(calculation_stack)
+
+    return None
+
+
+def div_event(screen_var: tkinter.StringVar):
+    """add button callback"""
+
+    value = screen_var.get()
+
+    calculation_stack.append(value + "/")
+
+    clear_screen(screen_var, 0)
+
+    print(calculation_stack)
+
+    return None
+
+
+def mod_event(screen_var: tkinter.StringVar):
+    """add button callback"""
+
+    value = screen_var.get()
+
+    calculation_stack.append(value + "-")
 
     clear_screen(screen_var, 0)
 
@@ -200,9 +258,18 @@ def add_event(screen_var: tkinter.StringVar):
 def equal_event(screen_var: tkinter.StringVar):
     """equal button event"""
 
-    result = sum(calculation_stack)
+    calculation_stack.append(screen_var.get())
+    calc = "".join(calculation_stack).strip("+-/*%")
 
-    screen_var.set(f"{result}")
+    try:
+        value = eval(calc)
+    except:
+        value = "NaN"
+
+    screen_var.set(value)
+
+    # now clear the stack;
+    calculation_stack.clear()
 
     return None
 
@@ -274,7 +341,7 @@ def main_window():
                                   command=lambda: add_event(calculator_screen_var), image=images["addition"], **BTN_PROPERTIES)
 
     backspace_btn = tkinter.Button(root, name="backspace_btn",
-                                   command=None, image=images["backspace"], **BTN_PROPERTIES)
+                                   command=lambda:  clear_screen(calculator_screen_var, state=1), image=images["backspace"], **BTN_PROPERTIES)
 
     clear_all_btn = tkinter.Button(root, name="clear_all_btn",
                                    command=lambda: clear_screen(calculator_screen_var, state=0), image=images["clear_all"], **BTN_PROPERTIES)
@@ -283,31 +350,31 @@ def main_window():
                                      command=lambda: clear_screen(calculator_screen_var, state=1), image=images["clear_digit"], **BTN_PROPERTIES)
 
     close_parentheses_btn = tkinter.Button(root, name="close_parentheses_btn",
-                                           command=None, image=images["close_parentheses"], **BTN_PROPERTIES)
+                                           command=lambda: print_to_screen(")", calculator_screen_var), image=images["close_parentheses"], **BTN_PROPERTIES)
 
     divide_btn = tkinter.Button(root, name="divide_btn",
-                                command=None, image=images["divide"], **BTN_PROPERTIES)
+                                command=lambda: div_event(calculator_screen_var), image=images["divide"], **BTN_PROPERTIES)
 
     dot_btn = tkinter.Button(root, name="dot_btn",
-                             command=None, image=images["dot"], **BTN_PROPERTIES)
+                             command=lambda: print_to_screen(".", calculator_screen_var), image=images["dot"], **BTN_PROPERTIES)
 
     equal_btn = tkinter.Button(root, name="equal_btn",
                                command=lambda: equal_event(calculator_screen_var), image=images["equal_btn"], **BTN_PROPERTIES)
 
     multiply_btn = tkinter.Button(root, name="multiply_btn",
-                                  command=None, image=images["multiply"], **BTN_PROPERTIES)
+                                  command=lambda: mul_event(calculator_screen_var), image=images["multiply"], **BTN_PROPERTIES)
 
     open_parentheses_btn = tkinter.Button(root, name="open_parentheses_btn",
-                                          command=None, image=images["open_parentheses"], **BTN_PROPERTIES)
+                                          command=lambda: print_to_screen("(", calculator_screen_var), image=images["open_parentheses"], **BTN_PROPERTIES)
 
     percentage_btn = tkinter.Button(root, name="percentage_btn",
-                                    command=None, image=images["percentage"], **BTN_PROPERTIES)
+                                    command=lambda: mod_event(calculator_screen_var), image=images["percentage"], **BTN_PROPERTIES)
 
     positive_negative_btn = tkinter.Button(root, name="positive_negative_btn",
-                                           command=None, image=images["positive_negative"], **BTN_PROPERTIES)
+                                           command=lambda: print_to_screen("-", calculator_screen_var), image=images["positive_negative"], **BTN_PROPERTIES)
 
     subtraction_btn = tkinter.Button(root, name="subtraction_btn",
-                                     command=None, image=images["subtraction"], **BTN_PROPERTIES)
+                                     command=lambda: sub_event(calculator_screen_var), image=images["subtraction"], **BTN_PROPERTIES)
 
     num0_btn = tkinter.Button(root, name="num0_btn",
                               command=lambda: print_to_screen("0", calculator_screen_var), image=images["num0"], **BTN_PROPERTIES)
