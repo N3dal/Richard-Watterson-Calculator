@@ -22,7 +22,7 @@ class Calculator:
         The main window for the calculator;
     """
 
-    SIZE = [350, 512]
+    SIZE = [442, 538]
     WIDTH, HEIGHT = SIZE
 
     BACKGROUND_COLOR = (0, 0, 0)
@@ -31,6 +31,7 @@ class Calculator:
     TITLE = "Calculator"
 
     CURSOR_IMAGE = pygame.image.load(r"./pictures/cursor/cursor.png")
+    FRAME_IMAGE = pygame.image.load(r"./pictures/frame.png")
 
     def __init__(self, *args):
 
@@ -52,6 +53,7 @@ class Calculator:
         """
 
         self.window.fill(Calculator.BACKGROUND_COLOR)
+        self.window.blit(Calculator.FRAME_IMAGE, (0, 0))
         self.draw_cursor()
 
         pygame.display.update()
