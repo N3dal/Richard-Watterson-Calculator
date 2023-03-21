@@ -22,7 +22,7 @@ class Calculator:
         The main window for the calculator;
     """
 
-    SIZE = [256, 512]
+    SIZE = [350, 512]
     WIDTH, HEIGHT = SIZE
 
     BACKGROUND_COLOR = (0, 0, 0)
@@ -30,10 +30,19 @@ class Calculator:
 
     TITLE = "Calculator"
 
+    CURSOR_IMAGE = pygame.image.load(r"./pictures/cursor/cursor.png")
+
     def __init__(self, *args):
+
         # and make sure to remove the frame;
         self.window = pygame.display.set_mode(Calculator.SIZE, pygame.NOFRAME)
         self.running = True
+
+        # hide the the mouse cursor first;
+        pygame.mouse.set_visible(False)
+
+        # now create the cursor;
+        self.mouse_cursor = Calculator.CURSOR_IMAGE.get_rect()
 
     def draw(self):
         """
@@ -43,8 +52,21 @@ class Calculator:
         """
 
         self.window.fill(Calculator.BACKGROUND_COLOR)
+        self.draw_cursor()
 
         pygame.display.update()
+
+        return None
+
+    def draw_cursor(self):
+        """
+            draw the mouse cursor on the screen;
+
+            return None;
+        """
+
+        self.mouse_cursor.center = pygame.mouse.get_pos()
+        self.window.blit(Calculator.CURSOR_IMAGE, self.mouse_cursor)
 
         return None
 
