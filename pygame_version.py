@@ -13,8 +13,86 @@
 # -----------------------------------------------------------------
 
 import pygame
+from sys import exit
 
 pygame.init()
+
+
+class Button:
+    """
+        Custom button;
+    """
+
+    def __init__(self, parent, coords: tuple, text="", image=None):
+
+        self.parent = parent
+        self.text = text
+        self.image = image
+
+        self.x, self.y = coords
+
+    def draw(self):
+        self.parent.blit(self.image, (self.x, self.y))
+
+    def move(self, x: int, y: int):
+        self.x = x
+        self.y = y
+
+
+class TitleBar:
+    """
+        Docstring;
+    """
+    TITLE_IMAGE = pygame.image.load(r"./pictures/title_bar/title.png")
+    MINIMIZE_IMAGE = pygame.image.load(r"./pictures/title_bar/minimize.png")
+    MAXIMIZE_IMAGE = pygame.image.load(r"./pictures/title_bar/maximize.png")
+    CLOSE_IMAGE = pygame.image.load(r"./pictures/title_bar/close.png")
+
+    MINIMIZE_IMAGE_COORDS = (320, 10)
+    MAXIMIZE_IMAGE_COORDS = (360, 10)
+    CLOSE_IMAGE_COORDS = (400, 10)
+
+    def __init__(self, parent):
+
+        self.parent = parent
+        self.minimize_btn = Button(
+            parent=self.parent,
+            coords=TitleBar.MINIMIZE_IMAGE_COORDS,
+            image=TitleBar.MINIMIZE_IMAGE)
+
+        self.maximize_btn = Button(
+            parent=self.parent,
+            coords=TitleBar.MAXIMIZE_IMAGE_COORDS,
+            image=TitleBar.MAXIMIZE_IMAGE)
+
+        self.close_btn = Button(
+            parent=self.parent,
+            coords=TitleBar.CLOSE_IMAGE_COORDS,
+            image=TitleBar.CLOSE_IMAGE)
+
+    def draw(self):
+        """
+            draw the title bar;
+        """
+
+        self.parent.blit(TitleBar.TITLE_IMAGE, (15, 15))
+        # self.parent.blit(TitleBar.MINIMIZE_IMAGE,
+        #                  TitleBar.MINIMIZE_IMAGE_COORDS)
+        # self.parent.blit(TitleBar.MAXIMIZE_IMAGE,
+        #                  TitleBar.MAXIMIZE_IMAGE_COORDS)
+        # self.parent.blit(TitleBar.CLOSE_IMAGE, TitleBar.CLOSE_IMAGE_COORDS)
+        self.minimize_btn.draw()
+        self.maximize_btn.draw()
+        self.close_btn.draw()
+
+    def close_event(self):
+        exit(0)
+
+    def minimize_event(self):
+        pass
+
+    def maximize_event(self):
+        pass
 
 
 class Calculator:
@@ -25,7 +103,7 @@ class Calculator:
     SIZE = [442, 538]
     WIDTH, HEIGHT = SIZE
 
-    BACKGROUND_COLOR = (0, 0, 0)
+    BACKGROUND_COLOR = (228, 231, 236)
     ICON = ""
 
     TITLE = "Calculator"
@@ -45,6 +123,8 @@ class Calculator:
         # now create the cursor;
         self.mouse_cursor = Calculator.CURSOR_IMAGE.get_rect()
 
+        self.title_bar = TitleBar(parent=self.window)
+
     def draw(self):
         """
             draw the calculator;
@@ -54,6 +134,7 @@ class Calculator:
 
         self.window.fill(Calculator.BACKGROUND_COLOR)
         self.window.blit(Calculator.FRAME_IMAGE, (0, 0))
+        self.title_bar.draw()
         self.draw_cursor()
 
         pygame.display.update()
@@ -87,6 +168,12 @@ class Calculator:
                 if event.type == pygame.QUIT:
                     self.running = False
                     break
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+
+                    mouse_x, mouse_y = pygame.mouse.get_pos()
+                    if (mouse_x, mouse_y) == self.title_bar.CLOSE_IMAGE_COORDS:
+                        self.title_bar.close_event()
 
         return None
 
