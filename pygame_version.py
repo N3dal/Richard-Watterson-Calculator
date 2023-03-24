@@ -23,20 +23,59 @@ class Button:
         Custom button;
     """
 
-    def __init__(self, parent, coords: tuple, text="", image=None):
+    def __init__(self, parent, coords: tuple, func=None, args: tuple = None, text="", image=None):
 
         self.parent = parent
         self.text = text
         self.image = image
+        self.func = func
+        self.args = args
 
         self.x, self.y = coords
 
+        # get the width and the height of the button;
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
+
     def draw(self):
+        """
+            draw the button on the parent window;
+
+            return None;
+        """
         self.parent.blit(self.image, (self.x, self.y))
 
     def move(self, x: int, y: int):
+        """
+            move the button on the parent window;
+            x=> int;
+            y=> int;
+
+            return None;
+        """
         self.x = x
         self.y = y
+
+    def mouse_click_event(self, mouse_x: int, mouse_y: int):
+        """
+            check if the mouse is on the button and then,
+            call the command when we click on the button;
+
+            return None;
+        """
+
+        EXTRA_SPACE = 1
+
+        # check out if we on the button or not;
+        if mouse_x in range(self.x, self.x+self.width + EXTRA_SPACE) and mouse_y in range(self.y, self.y + self.height + EXTRA_SPACE):
+
+            if self.args is None:
+                self.func()
+
+            else:
+                self.func(*self.args)
+
+        return None
 
 
 class TitleBar:
@@ -58,17 +97,20 @@ class TitleBar:
         self.minimize_btn = Button(
             parent=self.parent,
             coords=TitleBar.MINIMIZE_IMAGE_COORDS,
-            image=TitleBar.MINIMIZE_IMAGE)
+            image=TitleBar.MINIMIZE_IMAGE,
+            func=self.minimize_event)
 
         self.maximize_btn = Button(
             parent=self.parent,
             coords=TitleBar.MAXIMIZE_IMAGE_COORDS,
-            image=TitleBar.MAXIMIZE_IMAGE)
+            image=TitleBar.MAXIMIZE_IMAGE,
+            func=self.maximize_event)
 
         self.close_btn = Button(
             parent=self.parent,
             coords=TitleBar.CLOSE_IMAGE_COORDS,
-            image=TitleBar.CLOSE_IMAGE)
+            image=TitleBar.CLOSE_IMAGE,
+            func=self.close_event)
 
     def draw(self):
         """
@@ -76,11 +118,6 @@ class TitleBar:
         """
 
         self.parent.blit(TitleBar.TITLE_IMAGE, (15, 15))
-        # self.parent.blit(TitleBar.MINIMIZE_IMAGE,
-        #                  TitleBar.MINIMIZE_IMAGE_COORDS)
-        # self.parent.blit(TitleBar.MAXIMIZE_IMAGE,
-        #                  TitleBar.MAXIMIZE_IMAGE_COORDS)
-        # self.parent.blit(TitleBar.CLOSE_IMAGE, TitleBar.CLOSE_IMAGE_COORDS)
         self.minimize_btn.draw()
         self.maximize_btn.draw()
         self.close_btn.draw()
@@ -89,10 +126,10 @@ class TitleBar:
         exit(0)
 
     def minimize_event(self):
-        pass
+        print("minimize!!")
 
     def maximize_event(self):
-        pass
+        print("maximize!!")
 
 
 class Calculator:
@@ -172,8 +209,14 @@ class Calculator:
                 if event.type == pygame.MOUSEBUTTONDOWN:
 
                     mouse_x, mouse_y = pygame.mouse.get_pos()
-                    if (mouse_x, mouse_y) == self.title_bar.CLOSE_IMAGE_COORDS:
-                        self.title_bar.close_event()
+                    self.title_bar.minimize_btn.mouse_click_event(
+                        mouse_x=mouse_x, mouse_y=mouse_y)
+
+                    self.title_bar.maximize_btn.mouse_click_event(
+                        mouse_x=mouse_x, mouse_y=mouse_y)
+
+                    self.title_bar.close_btn.mouse_click_event(
+                        mouse_x=mouse_x, mouse_y=mouse_y)
 
         return None
 
