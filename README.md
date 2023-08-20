@@ -32,7 +32,7 @@ Make sure you have the following installed before running the calculator:
     `cd Richard-Watterson-Calculator`
 
 3. Install the required dependencies:
-    `pip install tkinter`
+    `pip install tk`
 
 4. Run the calculator:
    `python main.py`
